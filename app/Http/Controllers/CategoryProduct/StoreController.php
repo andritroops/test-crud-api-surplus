@@ -1,22 +1,25 @@
 <?php
 
-namespace App\Http\Controllers\Product;
+namespace App\Http\Controllers\CategoryProduct;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
-use App\Models\Product;
+use Illuminate\Validation\Rule;
+use App\Models\CategoryProduct;
 
-class UpdateController extends Controller
+class StoreController extends Controller
 {
-    public function __invoke(Request $request, $id)
+    public function __invoke(Request $request)
     {
 
         $validator = Validator::make($request->all(), [
-            'name' => 'required|unique:products,name,' . $id,
-            'description' => 'required',
-            'enable' => 'required'
+            'product_id' => [
+                'required',
+                Rule::unique('category_products')->where('product_id', $request->product_id)->where('category_id', $request->category_id)
+            ],
+            'category_id' => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -30,27 +33,18 @@ class UpdateController extends Controller
 
         try {
 
-            $product =  Product::find($id);
-
-            if(!$product){
-                return response()->json([
-                    'status' => 'fail',
-                    'message' => 'Product not found!',
-                ], 422);
-            }
-
-            $product->update([
-                'name' => $request->name,
-                'description' => $request->description,
-                'enable' => $request->enable,
+            CategoryProduct::create([
+                'product_id' => $request->product_id,
+                'category_id' => $request->category_id,
             ]);
 
             DB::commit();
 
             return response()->json([
                 'status' => 'success',
-                'message' => 'Update data successfully!',
+                'message' => 'Create data successfully!',
             ], 200);
+
         } catch (\Exception $e) {
 
             DB::rollback();

@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Product;
+namespace App\Http\Controllers\CategoryProduct;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
-use App\Models\Product;
+use App\Models\CategoryProduct;
+use Illuminate\Validation\Rule;
 
 class UpdateController extends Controller
 {
@@ -14,9 +15,11 @@ class UpdateController extends Controller
     {
 
         $validator = Validator::make($request->all(), [
-            'name' => 'required|unique:products,name,' . $id,
-            'description' => 'required',
-            'enable' => 'required'
+            'product_id' => [
+                'required',
+                Rule::unique('category_products')->where('product_id', $request->product_id)->where('category_id', $request->category_id)->whereNot('id',$id)
+            ],
+            'category_id' => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -30,19 +33,18 @@ class UpdateController extends Controller
 
         try {
 
-            $product =  Product::find($id);
+            $categoryProduct =  CategoryProduct::find($id);
 
-            if(!$product){
+            if(!$categoryProduct){
                 return response()->json([
                     'status' => 'fail',
-                    'message' => 'Product not found!',
+                    'message' => 'Category not found!',
                 ], 422);
             }
 
-            $product->update([
-                'name' => $request->name,
-                'description' => $request->description,
-                'enable' => $request->enable,
+            $categoryProduct->update([
+                'product_id' => $request->product_id,
+                'category_id' => $request->category_id,
             ]);
 
             DB::commit();

@@ -38,7 +38,7 @@ class UpdateController extends Controller
                 ], 422);
             }
 
-            Category::where('id', $id)->update([
+            $category->update([
                 'name' => $request->name,
                 'enable' => $request->enable,
             ]);
