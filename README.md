@@ -36,33 +36,33 @@ Untuk test api silahkan menggunakan Postman.
  - GET -> http://127.0.0.1:8000/api/categories 
  - POST -> http://127.0.0.1:8000/api/categories 
  - GET -> http://127.0.0.1:8000/api/categories/{id} 
- - PUT -> http://127.0.0.1:8000/api/categories/{id} 
+ - POST -> http://127.0.0.1:8000/api/categories/{id}?_method=PUT
  - DELETE -> http://127.0.0.1:8000/api/categories/{id}
 
 **Route Product**
  - GET -> http://127.0.0.1:8000/api/products
  - POST -> http://127.0.0.1:8000/api/products
  - GET -> http://127.0.0.1:8000/api/products/{id}
- - PUT -> http://127.0.0.1:8000/api/products/{id}
+ - POST-> http://127.0.0.1:8000/api/products/{id}?_method=PUT
  - DELETE -> http://127.0.0.1:8000/api/products/{id}
 
 **Route Category Product**
  - GET -> http://127.0.0.1:8000/api/category-products
  - POST -> http://127.0.0.1:8000/api/category-products
  - GET -> http://127.0.0.1:8000/api/category-products/{id}
- - PUT -> http://127.0.0.1:8000/api/category-products/{id}
+ - POST -> http://127.0.0.1:8000/api/category-products/{id}?_method=PUT
  - DELETE -> http://127.0.0.1:8000/api/category-products/{id}
 
   **Route Image**
  - GET -> http://127.0.0.1:8000/api/images
  - POST -> http://127.0.0.1:8000/api/images
  - GET -> http://127.0.0.1:8000/api/images/{id}
- - PUT -> http://127.0.0.1:8000/api/images/{id}
+ - POST -> http://127.0.0.1:8000/api/images/{id}?_method=PUT
  - DELETE -> http://127.0.0.1:8000/api/images/{id}
  
   **Route Product Image**
  - GET -> http://127.0.0.1:8000/api/product-images
  - POST -> http://127.0.0.1:8000/api/product-images
  - GET -> http://127.0.0.1:8000/api/product-images/{id}
- - PUT -> http://127.0.0.1:8000/api/product-images/{id}
+ - POST -> http://127.0.0.1:8000/api/product-images/{id}?_method=PUT
  - DELETE -> http://127.0.0.1:8000/api/product-images/{id}
