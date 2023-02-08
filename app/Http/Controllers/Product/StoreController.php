@@ -14,7 +14,7 @@ class StoreController extends Controller
     {
 
         $validator = Validator::make($request->all(), [
-            'name' => 'required|unique:categories,name',
+            'name' => 'required|unique:products,name',
             'description' => 'required',
             'enable' => 'required',
         ]);
@@ -33,7 +33,7 @@ class StoreController extends Controller
             Product::create([
                 'name' => $request->name,
                 'description' => $request->description,
-                'enable' => true,
+                'enable' => $request->enable,
             ]);
 
             DB::commit();

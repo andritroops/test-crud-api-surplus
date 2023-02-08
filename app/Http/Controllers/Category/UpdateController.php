@@ -29,6 +29,15 @@ class UpdateController extends Controller
 
         try {
 
+            $category =  Category::find($id);
+
+            if(!$category){
+                return response()->json([
+                    'status' => 'fail',
+                    'message' => 'Category not found!',
+                ], 422);
+            }
+
             Category::where('id', $id)->update([
                 'name' => $request->name,
                 'enable' => $request->enable,

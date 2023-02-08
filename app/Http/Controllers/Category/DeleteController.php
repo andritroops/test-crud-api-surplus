@@ -15,10 +15,10 @@ class DeleteController extends Controller
 
         try {
 
-            $category =  Category::find($id);
+            $category = Category::find($id);
             
             if($category){
-                Category::where('id', $id)->delete();
+                $category->delete();
             }else{
                 return response()->json([
                     'status' => 'fail',
