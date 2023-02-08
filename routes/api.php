@@ -17,6 +17,11 @@ use App\Http\Controllers\CategoryProduct\StoreController AS StoreCategoryProduct
 use App\Http\Controllers\CategoryProduct\EditController AS EditCategoryProduct;
 use App\Http\Controllers\CategoryProduct\UpdateController AS UpdateCategoryProduct;
 use App\Http\Controllers\CategoryProduct\DeleteController AS DeleteCategoryProduct;
+use App\Http\Controllers\Image\IndexController AS GetImage;
+use App\Http\Controllers\Image\StoreController AS StoreImage;
+use App\Http\Controllers\Image\EditController AS EditImage;
+use App\Http\Controllers\Image\UpdateController AS UpdateImage;
+use App\Http\Controllers\Image\DeleteController AS DeleteImage;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -47,6 +52,13 @@ Route::post('/category-products', StoreCategoryProduct::class);
 Route::get('/category-products/{id}', EditCategoryProduct::class);
 Route::put('/category-products/{id}', UpdateCategoryProduct::class);
 Route::delete('/category-products/{id}', DeleteCategoryProduct::class);
+
+// Image
+Route::get('/images', GetImage::class);
+Route::post('/images', StoreImage::class);
+Route::get('/images/{id}', EditImage::class);
+Route::put('/images/{id}', UpdateImage::class);
+Route::delete('/images/{id}', DeleteImage::class);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
